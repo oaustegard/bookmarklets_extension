@@ -61,6 +61,7 @@ mkdir -p "${TEMP_DIR}/${EXTENSION_NAME}"
 #   - CLAUDE.md (Claude-specific entry point)
 #   - README.md (included in release notes, not in ZIP)
 #   - LICENSE (included in release notes, not in ZIP)
+#   - demo-bookmarklets/ (demo files, referenced via default config)
 #   - .github/ (workflow and scripts)
 #   - .git/ (version control)
 #   - *.zip (generated release files)
@@ -68,7 +69,6 @@ cp manifest.json "${TEMP_DIR}/${EXTENSION_NAME}/"
 cp popup.html popup.js "${TEMP_DIR}/${EXTENSION_NAME}/"
 cp options.html options.js options.css "${TEMP_DIR}/${EXTENSION_NAME}/"
 cp -r icons "${TEMP_DIR}/${EXTENSION_NAME}/"
-cp -r demo-bookmarklets "${TEMP_DIR}/${EXTENSION_NAME}/"
 
 # Copy documentation files (but don't include them in the actual extension ZIP)
 cp README.md "${TEMP_DIR}/" 2>/dev/null || true
