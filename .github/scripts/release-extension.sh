@@ -56,6 +56,14 @@ echo -e "${GREEN}Creating extension package...${NC}"
 mkdir -p "${TEMP_DIR}/${EXTENSION_NAME}"
 
 # Copy all necessary files for the extension
+# NOTE: The following files are in the repo but excluded from releases:
+#   - AGENTS.md (agent development guide)
+#   - CLAUDE.md (Claude-specific entry point)
+#   - README.md (included in release notes, not in ZIP)
+#   - LICENSE (included in release notes, not in ZIP)
+#   - .github/ (workflow and scripts)
+#   - .git/ (version control)
+#   - *.zip (generated release files)
 cp manifest.json "${TEMP_DIR}/${EXTENSION_NAME}/"
 cp popup.html popup.js "${TEMP_DIR}/${EXTENSION_NAME}/"
 cp options.html options.js options.css "${TEMP_DIR}/${EXTENSION_NAME}/"
