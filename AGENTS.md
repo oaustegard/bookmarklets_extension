@@ -10,7 +10,7 @@ This document provides guidance for AI agents (like Claude) working on the Bookm
 - Load bookmarklets from any public GitHub repository
 - Keyboard shortcut support (Alt+B)
 - Repository configuration dialog
-- Demo bookmarklets included for testing
+- Pre-configured with demo bookmarklets (fetched from this repo's `demo-bookmarklets/` folder on GitHub)
 - CSP-compliant execution using `eval()` (matches real bookmarklet behavior)
 
 ## Project Structure
@@ -19,17 +19,17 @@ This document provides guidance for AI agents (like Claude) working on the Bookm
 bookmarklet-runner-extension/
 ├── manifest.json           # Extension manifest (version source of truth)
 ├── popup.html/js          # Main extension popup UI
-├── options.html/js/css    # Settings/configuration page
+├── options.html/js/css    # Settings/configuration page (defaults to demo bookmarklets)
 ├── icons/                 # Extension icons (16, 32, 48, 128)
-├── demo-bookmarklets/     # Sample bookmarklets for testing
+├── demo-bookmarklets/     # Demo bookmarklets (in repo, NOT in releases; fetched from GitHub)
 ├── .github/
 │   ├── workflows/
 │   │   └── extension-release.yml    # Automated release workflow
 │   └── scripts/
 │       └── release-extension.sh     # Release packaging script
-├── AGENTS.md              # This file (agent development guide)
-├── CLAUDE.md              # Claude-specific entry point
-└── README.md              # User-facing documentation
+├── AGENTS.md              # This file (agent development guide, in repo but NOT in releases)
+├── CLAUDE.md              # Claude-specific entry point (in repo but NOT in releases)
+└── README.md              # User-facing documentation (in repo but NOT in releases)
 ```
 
 ## Version Management
@@ -65,16 +65,15 @@ bookmarklet-runner-extension/
 #### Storage Format
 ```javascript
 {
-  repositories: [
-    {
-      owner: 'username',
-      repo: 'repository-name',
-      path: 'optional/path/to/bookmarklets',
-      branch: 'main'  // optional, defaults to 'main'
-    }
-  ]
+  repo_config: {
+    repoOwner: 'oaustegard',  // defaults to 'oaustegard'
+    repoName: 'bookmarklet-runner-extension',  // defaults to 'bookmarklet-runner-extension'
+    folderPath: 'demo-bookmarklets'  // defaults to 'demo-bookmarklets'
+  }
 }
 ```
+
+The extension comes pre-configured with demo bookmarklets from this repository. Users can change these settings via the Options page.
 
 #### GitHub API Integration
 - Uses GitHub REST API v3
@@ -86,12 +85,13 @@ bookmarklet-runner-extension/
 
 1. **Manual Testing**:
    - Load the unpacked extension in Chrome
-   - Test the popup (Alt+B or click extension icon)
-   - Test the options page
-   - Try running demo bookmarklets
+   - Test the popup (Alt+B or click extension icon) - should load demo bookmarklets by default
+   - Test the options page - should show demo bookmarklet config as defaults
+   - Try running demo bookmarklets (they're fetched from GitHub, not bundled)
    - Test on pages with strict CSP (like GitHub)
 
 2. **Test Scenarios**:
+   - Verify demo bookmarklets load on first run (no configuration needed)
    - Add a new repository configuration
    - Run various bookmarklets
    - Test keyboard shortcuts
@@ -127,7 +127,12 @@ To create a new release:
 
 The script (`release-extension.sh`):
 - Validates semantic versioning
-- Packages only necessary files (excludes docs, .git, etc.)
+- Packages only necessary files (excludes docs, demo-bookmarklets, .git, etc.)
+- Files excluded from releases (but kept in repo):
+  - `AGENTS.md` and `CLAUDE.md` (agent documentation)
+  - `README.md` and `LICENSE` (included in release notes instead)
+  - `demo-bookmarklets/` (fetched from GitHub, not bundled)
+  - `.github/` (workflow and scripts)
 - Generates release notes with:
   - Installation instructions
   - README excerpt
@@ -205,7 +210,7 @@ The script (`release-extension.sh`):
 - Check `README.md` for user documentation
 - Review `manifest.json` for extension configuration
 - Examine `popup.js` and `options.js` for implementation details
-- Look at demo bookmarklets for examples
+- Look at `demo-bookmarklets/` folder for example bookmarklets (in repo only, fetched from GitHub in production)
 
 ## Guidelines for AI Agents
 

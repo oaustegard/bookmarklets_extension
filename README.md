@@ -21,22 +21,7 @@ Run bookmarklets from any GitHub repository directly without adding them to your
 
 ## Quick Start
 
-### Try the Demo Bookmarklets
-
-1. Install the extension (see [Installation](#installation) below)
-2. Right-click the extension icon and select **Options**
-3. Configure the demo repository:
-   - **GitHub Owner**: `oaustegard`
-   - **Repository Name**: `bookmarklet-runner-extension`
-   - **Folder Path**: `demo-bookmarklets`
-4. Click **Save Settings**
-5. Press `Alt+B` to open the extension and explore the demo bookmarklets!
-
-The demo includes examples of:
-- Basic bookmarklets with custom titles and descriptions
-- Domain-specific bookmarklets (try the GitHub Stars counter on this repo!)
-- Auto-grouped bookmarklets (utils_* prefix)
-- Bookmarklets with README documentation
+The extension comes pre-configured with demo bookmarklets - just install and press `Alt+B` to try them out!
 
 ### Use Your Own Repository
 
@@ -147,13 +132,19 @@ demo_image_viewer.js     ┘
 
 ## Installation
 
-### From source (Developer Mode)
+### Download Release (Recommended)
 
-1. Download/clone this extension folder
+Download the latest release from the [Releases page](https://github.com/oaustegard/bookmarklet-runner-extension/releases) and follow the installation instructions included with the release.
+
+### From Source (Development)
+
+For development or contributing:
+
+1. Clone this repository
 2. Open Chrome and navigate to `chrome://extensions/`
 3. Enable **Developer mode** (toggle in top-right)
 4. Click **Load unpacked**
-5. Select the `bookmarklet-runner-extension` folder
+5. Select the repository folder
 6. The extension icon will appear in your toolbar
 
 ### Set keyboard shortcut (optional)

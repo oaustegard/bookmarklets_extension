@@ -6,11 +6,11 @@
 
   const CONFIG_KEY = 'repo_config';
 
-  /* Default configuration */
+  /* Default configuration - pre-configured with demo bookmarklets */
   const DEFAULTS = {
     repoOwner: 'oaustegard',
-    repoName: 'bookmarklets',
-    folderPath: ''
+    repoName: 'bookmarklet-runner-extension',
+    folderPath: 'demo-bookmarklets'
   };
 
   /* DOM elements */
@@ -88,7 +88,7 @@
   async function handleReset(e) {
     e.preventDefault();
 
-    if (!confirm('Reset to default settings? This will point back to oaustegard/bookmarklets.')) {
+    if (!confirm('Reset to default settings? This will point back to the demo bookmarklets.')) {
       return;
     }
 
