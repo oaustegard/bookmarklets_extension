@@ -36,7 +36,8 @@ bookmarklet-runner-extension/
 
 **IMPORTANT**: The version in `manifest.json` is the **single source of truth** for the extension version.
 
-- Current version format: Semantic versioning (e.g., `2.0.0`)
+- Current version format: Semantic versioning (e.g., `2.0.2`)
+- When making changes, determine the scope of change and increment the version accordingly
 - When incrementing version: Only update `manifest.json`
 - The release workflow reads from `manifest.json` automatically
 
